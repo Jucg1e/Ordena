@@ -40,7 +40,7 @@ interface ProveedoresState {
 
 export const useProveedoresStore = create<ProveedoresState>()(
   persist(
-    (set, get) => ({
+    (set, _get) => ({
       proveedores: [],
       loading: false,
       error: null,

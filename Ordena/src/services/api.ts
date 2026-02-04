@@ -42,7 +42,7 @@ export const solicitudesService = {
     // Obtener solicitudes
     getSolicitudes: async (params?: { bodega_id?: string; sucursal_id?: string; estado?: string; limit?: number; offset?: number }) => {
         // Filtrar el parámetro estado ya que no existe en el backend
-        const { estado, ...paramsBackend } = params || {};
+        const { estado: _estado, ...paramsBackend } = params || {};
         const response = await api.get('/solicitudes/', { params: paramsBackend });
         return response.data;
     },

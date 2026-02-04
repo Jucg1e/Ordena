@@ -51,7 +51,7 @@ export const useUsuariosStore = create<UsuarioState>()(
         try {
           const data = await usuarioService.getUsuarios();
           set({ usuarios: data, loading: false });
-        } catch (error) {
+        } catch (_error) {
           set({ error: "Error al obtener usuarios", loading: false });
         }
       },
@@ -69,7 +69,7 @@ export const useUsuariosStore = create<UsuarioState>()(
             usuarios: [...state.usuarios, nuevoUsuario],
             loading: false,
           }));
-        } catch (error) {
+        } catch (_error) {
           set({ error: "Error al añadir el empleado", loading: false });
         }
       },
@@ -98,12 +98,13 @@ export const useUsuariosStore = create<UsuarioState>()(
         try {
           // 1. Llama al servicio para eliminar el usuario en el backend
           await usuarioService.deleteUsuario(id);
+          
           // 2. Si tiene éxito, elimina el usuario del estado local
           set((state) => ({
             usuarios: state.usuarios.filter((u) => u.id_us !== id),
             loading: false,
           }));
-        } catch (error) {
+        } catch (_error) {
           set({ error: "Error al eliminar el empleado", loading: false });
         }
       },

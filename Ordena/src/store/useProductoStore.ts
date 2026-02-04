@@ -52,7 +52,7 @@ interface InventariosState {
 
 export const useInventariosStore = create<InventariosState>()(
     persist(
-        (set, get) => ({
+        (set, _get) => ({
             inventarios: {},
             marcas: {},
             categorias: {},
@@ -92,7 +92,7 @@ export const useInventariosStore = create<InventariosState>()(
                             [ubicacionId]: marcasMapeadas
                         }
                     }));
-                } catch (error) {
+                } catch (_error) {
                 }
             },
 
@@ -170,14 +170,14 @@ export const useInventariosStore = create<InventariosState>()(
                 } catch (error) {
                     console.error('Error desactivando productos:', error);
                     // Si hay un error, refrescamos desde el servidor para garantizar consistencia.
-                    await get().fetchProductos(ubicacionId);
+                    await _get().fetchProductos(ubicacionId);
                 }
             },
 
             addMarca: async (ubicacionId: string, marca: string) => {
                 try {
                     await productoService.addMarca(marca);
-                    await get().fetchMarcas(ubicacionId);
+                    await _get().fetchMarcas(ubicacionId);
                 } catch (error) {
                     console.error('Error adding marca:', error);
                 }
@@ -186,7 +186,7 @@ export const useInventariosStore = create<InventariosState>()(
             deleteMarca: async (ubicacionId: string, marcaId: number) => {
                 try {
                     await productoService.deleteMarca(marcaId.toString());
-                    await get().fetchMarcas(ubicacionId);
+                    await _get().fetchMarcas(ubicacionId);
                 } catch (error) {
                     console.error('Error deleting marca:', error);
                 }
@@ -195,7 +195,7 @@ export const useInventariosStore = create<InventariosState>()(
             addCategoria: async (ubicacionId: string, categoria: string) => {
                 try {
                     await productoService.addCategoria(categoria);
-                    await get().fetchCategorias(ubicacionId);
+                    await _get().fetchCategorias(ubicacionId);
                 } catch (error) {
                     console.error('Error adding categoria:', error);
                 }
@@ -204,7 +204,7 @@ export const useInventariosStore = create<InventariosState>()(
             deleteCategoria: async (ubicacionId: string, categoriaId: number) => {
                 try {
                     await productoService.deleteCategoria(categoriaId.toString());
-                    await get().fetchCategorias(ubicacionId);
+                    await _get().fetchCategorias(ubicacionId);
                 } catch (error) {
                     console.error('Error deleting categoria:', error);
                 }
