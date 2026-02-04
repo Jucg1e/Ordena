@@ -12,7 +12,7 @@ export function InventarioPagination({ page, totalPages, setPage }: {
 }) {
   // Calcula los botones de página a mostrar (máximo 5)
   let start = Math.max(1, page - 2);
-  let end = Math.min(totalPages, start + 4);
+  const end = Math.min(totalPages, start + 4);
   if (end - start < 4) start = Math.max(1, end - 4);
 
   const pages = [];

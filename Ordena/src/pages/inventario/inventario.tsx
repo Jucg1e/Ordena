@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Layout from "../../components/layout/layout";
 import {
     Paper, Typography, Box, Button, TextField, MenuItem, Dialog, DialogTitle, DialogContent, DialogActions,
-    Card, CardContent, CardMedia, CardActionArea, Checkbox, FormControl, InputLabel, Select, IconButton,
+    Card, CardContent, Checkbox, FormControl, InputLabel, Select, IconButton,
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, Alert, CircularProgress,
     Drawer, Divider, Switch
 } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
@@ -18,18 +17,13 @@ import Tooltip from '@mui/material/Tooltip';
 import sin_imagen from "../../assets/sin_imagen.png";
 import { useInventariosStore } from "../../store/useProductoStore";
 import { useAuthStore } from "../../store/useAuthStore";
-import { BODEGA_CENTRAL } from "../../constants/ubicaciones";
 import CloseIcon from '@mui/icons-material/Close';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { COLORS } from '../../constants/colors';
 import { parseApiError } from '../../utils/errorUtils';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import MotivoAjusteModal from '../../components/inventario/MotivoAjusteModal';
 import { 
     validateProduct, 
-    type ProductInt as ValidationProductInt,
     type ValidationError 
 } from '../../utils/productoValidations';
 import ValidationField from '../../components/inventario/ValidationField';
@@ -49,39 +43,6 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 import HardwareIcon from '@mui/icons-material/Hardware';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LayersIcon from '@mui/icons-material/Layers';
-import CategoryIcon from '@mui/icons-material/Category';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
-import HandymanIcon from '@mui/icons-material/Handyman';
-import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
-import ColorLensIcon from '@mui/icons-material/ColorLens';
-import HomeIcon from '@mui/icons-material/Home';
-import StoreIcon from '@mui/icons-material/Store';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ScienceIcon from '@mui/icons-material/Science';
-import ComputerIcon from '@mui/icons-material/Computer';
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
-import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
-import GrassIcon from '@mui/icons-material/Grass';
-import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
-import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import FactoryIcon from '@mui/icons-material/Factory';
-import LocalCafeIcon from '@mui/icons-material/LocalCafe';
-import KitchenIcon from '@mui/icons-material/Kitchen';
-import ChairIcon from '@mui/icons-material/Chair';
-import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
-import DirectionsBoatIcon from '@mui/icons-material/DirectionsBoat';
-import DirectionsRailwayIcon from '@mui/icons-material/DirectionsRailway';
-import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
-import DirectionsTransitIcon from '@mui/icons-material/DirectionsTransit';
-import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 
 
 

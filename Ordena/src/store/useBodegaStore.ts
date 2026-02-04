@@ -69,7 +69,7 @@ interface BodegaState {
 
 export const useBodegaStore = create<BodegaState>()(
   persist(
-    (set, get) => ({
+    (set, _get) => ({
       vista: "bodega",
       solicitudes: [],
       bodegas: [],
@@ -85,7 +85,7 @@ export const useBodegaStore = create<BodegaState>()(
       // Funciones de solicitudes con backend
       fetchSolicitudes: async (params) => {
         try {
-          const { estado, ...paramsBackend } = params || {};
+          const { estado: _estado, ...paramsBackend } = params || {};
           // Por defecto limit 20
           const limit = paramsBackend.limit ?? 20;
           const offset = paramsBackend.offset ?? 0;

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/useAuthStore';
 
+const baseURL = (import.meta as any).env?.VITE_API_URL ?? 'http://localhost:8000/api';
 const api = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL,
     headers: {
         'Content-Type': 'application/json'
     }
@@ -41,7 +42,7 @@ export const solicitudesService = {
     // Obtener solicitudes
     getSolicitudes: async (params?: { bodega_id?: string; sucursal_id?: string; estado?: string; limit?: number; offset?: number }) => {
         // Filtrar el parámetro estado ya que no existe en el backend
-        const { estado, ...paramsBackend } = params || {};
+        const { estado: _estado, ...paramsBackend } = params || {};
         const response = await api.get('/solicitudes/', { params: paramsBackend });
         return response.data;
     },

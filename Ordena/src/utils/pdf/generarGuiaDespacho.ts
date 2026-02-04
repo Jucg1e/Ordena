@@ -41,7 +41,7 @@ export function generarGuiaDespacho(pedido: any) {
     });
 
     // OCI asociada y observaciones
-    let obsY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 120;
+    const obsY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 120;
     doc.text(`N° OCI asociada: ${pedido.ociAsociada || "-"}`, 14, obsY);
     doc.text(`Observaciones: ${pedido.observaciones || "Ninguna"}`, 14, obsY + 8);
 

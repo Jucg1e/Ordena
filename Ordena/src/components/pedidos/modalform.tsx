@@ -71,7 +71,7 @@ class DocumentoGenerator {
 // Función para convertir fechas a yyyy-mm-dd
 function normalizarFecha(fecha: string): string {
     if (!fecha) return '';
-    let f = fecha.replace(/\//g, '-');
+    const f = fecha.replace(/\//g, '-');
     if (/^\d{4}-\d{2}-\d{2}$/.test(f)) return f;
     
     const partes = f.split('-');
