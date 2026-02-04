@@ -1,62 +1,65 @@
-# 🧾 Ordena
+# Ordena
 
-**Ordena** es una plataforma web de gestión de inventario y pedidos diseñada para una cadena de ferreterías. Permite la administración eficiente del stock entre la bodega central y las sucursales, con control por roles, flujo de solicitudes, y un dashboard centralizado.
-
----
-
-## 🚀 Tecnologías utilizadas
-
-### 🖥️ Frontend
-- ⚛️ [React](https://reactjs.org/) + [Vite](https://vitejs.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- 🎨 [Material UI (MUI)](https://mui.com/) para la interfaz
-- 🔁 [Axios](https://axios-http.com/) para las peticiones HTTP
-
-### 🔧 Backend
-- 🐍 [Django](https://www.djangoproject.com/) + [Django REST Framework](https://www.django-rest-framework.org/)
-- 🛡️ Autenticación por tokens (JWT o sesión)
-- 🗃️ Base de datos (PostgreSQL
+Plataforma web para gestión integral de inventario y pedidos en una cadena de ferreterías. Conecta bodega central y sucursales, incorpora control por roles, flujo de solicitudes y un dashboard con métricas clave, además de notificaciones automáticas por eventos de stock.
 
 ---
 
-## 🧩 Estructura del proyecto
-
-ordena/
-├── frontend/ # Cliente web en React + Vite
-│ ├── src/
-│ └── ...
-├── backend/ # API REST en Django
-│ ├── ordena_api/
-│ ├── manage.py
-│ └── ...
-├── README.md
-└── .gitignore
-
+## ¿Qué problema resuelve?
+- Visibilidad del stock en tiempo real entre bodega y sucursales.
+- Centralización del flujo de solicitudes y pedidos con estados e historial.
+- Reducción de quiebres y sobrestock mediante umbrales de stock mínimo/máximo.
+- Trazabilidad de movimientos de inventario y generación de informes.
+- Digitalización de documentos (Guía de despacho, Acta de recepción, OCI) y soporte de códigos QR.
 
 ---
 
-## ⚙️ Instalación y ejecución
+## Características principales
+- Inventario: altas, bajas y ajustes con historial (movimientos).
+- Pedidos y solicitudes: creación, aprobación, seguimiento y recepción.
+- Notificaciones automáticas: stock crítico y superación de máximos.
+- Dashboard con gráficos (barras, tortas, comparativos).
+- Búsqueda de productos similares y validaciones para evitar duplicados.
+- Gestión de proveedores y personal de entrega.
+- Generación de documentos PDF (Guía de Despacho, Acta de Recepción, OCI).
+- QR: generación y escaneo para identificar productos.
+- Acceso por roles y rutas protegidas.
 
-### 🔷 Clonar el repositorio
+---
 
-https://github.com/fabianolate0320/Proyecto-ordena.git
-cd ordena
+## Stack tecnológico
+- Frontend: React + Vite + TypeScript, Material UI (MUI), Zustand, React Router, Chart.js.
+- Backend: Django + Django REST Framework, autenticación JWT.
+- Base de datos: PostgreSQL.
+- Utilidades: Axios, jsPDF + autotable, html5-qrcode, Tesseract.js (OCR selectivo).
 
-🖥️ Frontend (React + Vite)
+---
 
-cd frontend
-deno install
-deno run dev
+## Arquitectura
+- Monorepo con dos módulos:
+  - `Ordena/` Frontend (cliente web).
+  - `backend/` API REST (Django + DRF).
+- La API expone endpoints bajo `/api`, incluyendo productos, pedidos, solicitudes, proveedores, notificaciones e historial.
 
-Abre http://localhost:5173 en el navegador para ver la app.
+---
 
+## Ejecución (resumen)
+- Backend:
+  - Crear entorno virtual e instalar dependencias (`requirements.txt`).
+  - Configurar variables de entorno (conexión a PostgreSQL, JWT, CORS).
+  - Aplicar migraciones y ejecutar servidor.
+- Frontend:
+  - Instalar dependencias.
+  - Levantar el servidor de desarrollo.
+  - Ajustar `baseURL` del cliente si cambia la URL de la API (ver `Ordena/src/services/api.ts`).
 
-🔧 Backend (Django)
+---
 
-cd backend
-python -m venv env
-source env/bin/activate  # En Windows: env\Scripts\activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+## Seguridad y acceso
+- Autenticación mediante JWT con protección de rutas en el frontend.
+- Rutas y vistas condicionadas por rol (bodega/sucursal).
+- Interceptores de cliente para renovar sesión y redirigir en 401.
 
-Accede al backend en http://localhost:8000
+---
+
+## Estado del proyecto
+Proyecto funcional y listo para despliegue con ajustes de seguridad, configuración de producción y CI/CD. Ideal para presentar como solución de gestión de inventario y pedidos en retail/ferreterías.
