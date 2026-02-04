@@ -49,7 +49,7 @@ export function HistorialTemplate() {
         setLoadingMov(true);
         try {
             // Detectar ubicación activa
-            let filtros: any = { limit: 10, offset: 0 };
+            const filtros: any = { limit: 10, offset: 0 };
             let ubicacionActiva = null;
             if (usuario?.bodeg_fk?.id_bdg) {
                 filtros.bodega = usuario.bodeg_fk.id_bdg;

@@ -1025,7 +1025,7 @@ export default function PedidosBodega() {
 
     // Calcular los pedidos a mostrar según la pestaña y la página
     const datosFiltrados = useMemo(() => {
-        let datos = opcion === 'ingresos' ? ingresos : salidas;
+        const datos = opcion === 'ingresos' ? ingresos : salidas;
         // Aquí puedes agregar más filtros si lo deseas
         return datos;
     }, [ingresos, salidas, opcion]);

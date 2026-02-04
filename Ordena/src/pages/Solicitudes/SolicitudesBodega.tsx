@@ -127,7 +127,7 @@ export default function SolicitudesBodega() {
             // Refrescar inventario de la bodega después de aprobar
             await fetchProductos("bodega_central");
 
-            let transferidasArr: any[] = [];
+            const transferidasArr: any[] = [];
             seleccionadas.forEach(id => {
                 if (cambios[id] === "aprobada") {
                     const solicitud = solicitudes.find(s => s.id_solc === id);
